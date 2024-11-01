@@ -51,18 +51,17 @@ def get_mlp2(channels: List[int], add_batchnorm: bool = True) -> nn.Sequential:
 
 
 class LanguageEncoder(torch.nn.Module):
-    def __init__(self, embedding_dim, hungging_model=None, fixed_embedding=False,
+    def __init__(self, embedding_dim,  hungging_model = None, fixed_embedding=False,
                  intra_module_num_layers=2, intra_module_num_heads=4,
-                 is_fine=False, inter_module_num_layers=2, inter_module_num_heads=4,
+                 is_fine = False, inter_module_num_layers=2, inter_module_num_heads=4,
                  ):
+        """Language encoder to encode a set of hints for each sentence"""
         super(LanguageEncoder, self).__init__()
 
         self.is_fine = is_fine
-        local_model_path = r"/root/autodl-tmp/universe_lan2img_vpr/T5_small"
-        self.tokenizer = AutoTokenizer.from_pretrained(local_model_path)
+        self.tokenizer = AutoTokenizer.from_pretrained(hungging_model)
         T5EncoderModel._keys_to_ignore_on_load_unexpected = ["decoder.*"]
-        self.llm_model = T5EncoderModel.from_pretrained(local_model_path)
-
+        self.llm_model = T5EncoderModel.from_pretrained(hungging_model)
         if fixed_embedding:
             self.fixed_embedding = True
             for para in self.llm_model.parameters():

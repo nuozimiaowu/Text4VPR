@@ -1,7 +1,5 @@
 import torch.nn as nn
 import torch
-from torchvision import transforms
-from PIL import Image
 
 DINOV2_ARCHS = {
     'dinov2_vits14': 384,
@@ -12,16 +10,6 @@ DINOV2_ARCHS = {
 
 
 class DINOv2(nn.Module):
-    """
-    DINOv2 model
-
-    Args:
-        model_name (str): The name of the model architecture
-            should be one of ('dinov2_vits14', 'dinov2_vitb14', 'dinov2_vitl14', 'dinov2_vitg14')
-        num_trainable_blocks (int): The number of last blocks in the model that are trainable.
-        norm_layer (bool): If True, a normalization layer is applied in the forward pass.
-        return_token (bool): If True, the forward pass returns both the feature map and the token.
-    """
 
     def __init__(
             self,

@@ -10,7 +10,6 @@ from models.loss import ContrastiveLoss
 from tqdm import tqdm
 import logging
 import numpy as np
-
 torch.cuda.empty_cache()
 batch_size = 64
 
@@ -23,9 +22,9 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
-excel_file_train = r"your path to /dataset/train_description.xlsx"
-excel_file_val = r"your path to /dataset/val_description.xlsx"
-image_root_dir = r"your path to /dataset/train_description.xlsx"
+excel_file_train = r"your absolute path to /dataset/train_description.xlsx"
+excel_file_val = r"your absolute path to /dataset/val_description.xlsx"
+image_root_dir = r"your absolute path to /dataset/Street360Loc_images"
 
 dataset_train = GroupedImageDataset(excel_file_train, image_root_dir, transform=transform, drop_last=True)
 dataset_val = GroupedImageDataset(excel_file_val, image_root_dir, transform=transform, drop_last=True)
