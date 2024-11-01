@@ -202,4 +202,8 @@ for epoch in range(num_epochs):
         }, model_filename)
         logging.info(f'New best model saved as: {model_filename}')
 
+<<<<<<< HEAD
 logging.info('Training complete!')
+=======
+logging.info('Training complete!')
+>>>>>>> a8237670e9185a5435fa9e8e3376ac083c568e38
