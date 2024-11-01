@@ -30,18 +30,8 @@ conda install --file requirements.txt
 
 "Download `Street360Loc_images.rar` from https://drive.google.com/file/d/17QlkGvgAKIYlm6AHi6fjFTD8ev8eNVWB/view?usp=sharing. Extract it into the `dataset` folder. The structure of the `dataset` folder will be as follows:"
 
-dataset/
-├── test_description.xlsx
-├── train_description.xlsx
-├── val_description.xlsx
-└── Street360Loc_images/
-     ├── 000001_0.jpg
-     ├── 000001_1.jpg
-     ├── 000001_2.jpg
-     ├── 000001_3.jpg
-     ..............
-     ..............
-     ├── 007000_5.jpg
+![image](https://github.com/user-attachments/assets/a90a70c3-85c4-4a4d-845e-a769075dc756)
+
 
 
 Dataset construction finished
