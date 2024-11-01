@@ -17,11 +17,10 @@ def custom_collate_fn(batch):
     descriptions = list(descriptions)
     return indices, coordinates, images, descriptions
 
-# 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
                     handlers=[logging.FileHandler("test.log"), logging.StreamHandler()])
 
-# 定义数据转换
+
 transform = transforms.Compose([
     transforms.Resize((252, 252)),
     transforms.ToTensor(),
@@ -91,7 +90,6 @@ def evaluate_on_testset(image_encoder, text_encoder, test_loader, device, top_k=
     all_image_encodings = torch.cat(all_image_encodings, dim=0).numpy()
     all_positions = np.array(all_positions)
 
-    # 计算准确率
     num_queries = len(all_text_encodings)
     accuracies = {k: {p: 0 for p in distance_thresholds} for k in top_k}
 
@@ -115,10 +113,9 @@ def evaluate_on_testset(image_encoder, text_encoder, test_loader, device, top_k=
             print(f"Top-{k} accuracy within {p} meters: {accuracies[k][p]:.4f}")
             logging.info(f"Top-{k} accuracy within {p} meters: {accuracies[k][p]:.4f}")
 
-# 主程序
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model_path = r'D:\research_project\cvpr\learn_project_code\myprojec\Text4VPR_local_test\train\checkpoints\model_top1_accuracy_0.1000.pth'  # 替换为你的模型文件名
+    model_path = r'your weight file path under train/checkpoints/'
     image_encoder, text_encoder = load_model(model_path, device)
     evaluate_on_testset(image_encoder, text_encoder, dataloader_test, device)
     logging.info('测试评估完成!')

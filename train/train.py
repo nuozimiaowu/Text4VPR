@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.optim as optim
 from torch.utils.data import DataLoader
@@ -131,6 +132,8 @@ text_encoder.to(device)
 
 num_epochs = 10
 
+best_accuracy = 0  # 初始化最佳准确度
+
 for epoch in range(num_epochs):
     image_encoder.train()
     text_encoder.train()
@@ -138,33 +141,31 @@ for epoch in range(num_epochs):
 
     with tqdm(total=len(dataloader_train), desc=f"Epoch {epoch + 1}/{num_epochs}", unit="batch") as pbar:
         for indices, coordinates, images, descriptions in dataloader_train:
+            # Process images
             image_descriptors = []
-
             for img_group in images:
                 group_descriptors = []
-
                 for img in img_group:
                     img = img.to(device)
                     img = img.unsqueeze(0)
                     image_descriptor = image_encoder(img)
                     group_descriptors.append(image_descriptor.squeeze(0))
-
                 concatenated_group_descriptor = torch.cat(group_descriptors, dim=-1)
                 image_descriptors.append(concatenated_group_descriptor)
-
             image_descriptors = torch.stack(image_descriptors)
-            text_descriptors = []
 
+            # Process text
+            text_descriptors = []
             for group_descriptions in descriptions:
                 group_text_encodings = []
                 for desc in group_descriptions:
                     text_descriptor = text_encoder([desc])
                     group_text_encodings.append(text_descriptor.squeeze(0))
-
                 concatenated_text_descriptor = torch.cat(group_text_encodings, dim=-1)
                 text_descriptors.append(concatenated_text_descriptor)
-
             text_descriptors = torch.stack(text_descriptors)
+
+            # Calculate loss
             image_descriptors_2048 = image_descriptors.view(-1, 2048)
             text_descriptors_2048 = text_descriptors.view(-1, 2048)
             loss = contrastive_loss(image_descriptors_2048, text_descriptors_2048)
@@ -183,9 +184,22 @@ for epoch in range(num_epochs):
     logging.info(f'Validating model on validation set after epoch {epoch + 1}')
     accuracies_val = validate_on_valset(image_encoder, text_encoder, dataloader_val, device)
 
+    # Calculate current top1 accuracy
+    current_top1_accuracy = accuracies_val[1][5]
+
     logging.info(f'Validation Accuracies after epoch {epoch + 1}:')
     for k in [1, 5, 10]:
         for p in [5, 10, 15, 30]:
             logging.info(f"Top-{k} accuracy within {p} meters on validation set: {accuracies_val[k][p]:.4f}")
+
+    # If current top1 accuracy exceeds previous best, save the model immediately
+    if current_top1_accuracy > best_accuracy:
+        best_accuracy = current_top1_accuracy
+        model_filename = os.path.join('checkpoints', f'model_top1_accuracy_{best_accuracy:.4f}.pth')
+        torch.save({
+            'image_encoder_state_dict': image_encoder.state_dict(),
+            'text_encoder_state_dict': text_encoder.state_dict(),
+        }, model_filename)
+        logging.info(f'New best model saved as: {model_filename}')
 
 logging.info('Training complete!')
