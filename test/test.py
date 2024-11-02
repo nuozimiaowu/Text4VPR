@@ -118,4 +118,4 @@ if __name__ == "__main__":
     model_path = r'your weight file path under train/checkpoints/'
     image_encoder, text_encoder = load_model(model_path, device)
     evaluate_on_testset(image_encoder, text_encoder, dataloader_test, device)
-    logging.info('测试评估完成!')
+    logging.info('Test evaluation completed!')
