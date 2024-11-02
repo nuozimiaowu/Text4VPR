@@ -132,7 +132,7 @@ text_encoder.to(device)
 
 num_epochs = 10
 
-best_accuracy = 0  # 初始化最佳准确度
+best_accuracy = 0 
 
 for epoch in range(num_epochs):
     image_encoder.train()
