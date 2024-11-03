@@ -19,11 +19,15 @@ cd Text4VPR
 conda create -n text4vpr python=3.11.9
 conda activate text4vpr
 
-# Install the according versions of torch and torchvision
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-
-# Install required dependencies
-conda install --file requirements.txt
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+pip install xformers==0.0.28.post1
+pip install pandas
+pip install nltk
+pip install transformers=4.44.2
+pip install openpyxl
+pip install protobuf
+pip install tiktoken
+pip install sentencepiece
 ```
 
 ## Dataset Construction
