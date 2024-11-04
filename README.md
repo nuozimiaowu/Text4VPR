@@ -36,11 +36,37 @@ pip install sentencepiece
 
 ![image](https://github.com/user-attachments/assets/a90a70c3-85c4-4a4d-845e-a769075dc756)
 
-
-
 Dataset construction finished
 
+## Load Pretrained Modules
 
+Our pre-trained model is avaliable：https://drive.google.com/file/d/1ZH-lpOzsKPOMguwKcDcr0OlXUjwK427d/view?usp=sharing
+
+To evaluate the pretrained model, follow these detailed steps:
+
+1. **Open the Evaluation Script**: Navigate to the `test` directory and open the `test.py` script in a text editor.
+
+2. **Update File Paths**: Locate the following lines in `test.py` and replace the placeholder paths with the actual paths to your test dataset and the trained model weights:
+
+   ```
+   excel_file_test = r"your path to /dataset/test_description.xlsx"
+   image_root_dir = r"your path to /dataset/Street360Loc_images"
+   ```
+
+   For example:
+
+   ```
+   excel_file_test = r"/home/user/Text4VPR/dataset/test_description.xlsx"
+   image_root_dir = r"/home/user/Text4VPR/dataset/Street360Loc_images"
+   ```
+
+3. **Update Model Weights Path**: Find and update the line specifying the model weight file path to point to the checkpoint saved during training:
+
+   ```
+   model_path = r'your downloaded pretraind model'
+   ```
+
+4. **Run the Evaluation Script**: After updating the paths, run the evaluation script. In your terminal, ensure you are in the root directory of the Text4VPR repository, and execute:
 
 ## Training
 
