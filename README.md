@@ -18,6 +18,9 @@ We focus on the localization problem from pure text to images, specifically achi
 
 ![image](https://github.com/user-attachments/assets/9f0fe76e-cbad-4019-afef-18ffbb5ec0bc)
                 **Performance evaluation by comparison with SOTA place recognition methods**
+<div align="center">
+ **Performance evaluation by comparison with SOTA place recognition methods**
+</div>
                 
 
 ## Building Environment
