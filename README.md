@@ -1,4 +1,4 @@
-# Text4VPR
+ # Text4VPR
 
 This is the official repository for Text4VPR.
 
@@ -10,14 +10,18 @@ We focus on the localization problem from pure text to images, specifically achi
 
 ## Model and performance
 ![image](https://github.com/user-attachments/assets/f844180a-4107-4e8c-9bbd-4fdbecb26a74)
-Text4VPR. Training stage: We employ the T5 model to encode text descriptions. We implement the Sinkhorn algorithm to
-assign tags to clusters, followed by cluster aggregation to generate image encodings. Finally, we use contrastive learning to draw correctly
-matched image-text pairs closer in the embedding space. Inference stage: Both images and text are encoded with the same text and image
-encoders utilized during training. Subsequently, we align text clusters with their paired image clusters at corresponding positions.
+###Text4VPR. Training stage: We employ the T5 model to encode text descriptions. We implement the Sinkhorn algorithm to
+###assign tags to clusters, followed by cluster aggregation to generate image encodings. Finally, we use contrastive learning to draw correctly
+###matched image-text pairs closer in the embedding space. Inference stage: Both images and text are encoded with the same text and image
+###encoders utilized during training. Subsequently, we align text clusters with their paired image clusters at corresponding positions.
+
+
 
 
 ![image](https://github.com/user-attachments/assets/9f0fe76e-cbad-4019-afef-18ffbb5ec0bc)
-Performance evaluation by comparison with SOTA place recognition methods
+                ###Performance evaluation by comparison with SOTA place recognition methods
+
+                
 
 ## Building Environment
 
