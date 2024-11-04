@@ -67,7 +67,9 @@ To evaluate the pretrained model, follow these detailed steps:
    ```
 
 4. **Run the Evaluation Script**: After updating the paths, run the evaluation script. In your terminal, ensure you are in the root directory of the Text4VPR repository, and execute:
-
+    ```
+    python test/test.py
+    ```
 ## Training
 
 To train the Text4VPR model, follow these detailed steps:
