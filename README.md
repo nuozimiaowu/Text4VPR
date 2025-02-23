@@ -5,19 +5,20 @@ This is the official repository for Text4VPR. 🔥🔥🔥
 
 
 ## Introduction
-
+![image](https://github.com/user-attachments/assets/f5af6323-63ca-4437-bc6e-6c4f8ddbb513)
 We focus on the localization problem from pure text to images, specifically achieving accurate positioning through descriptions of the surrounding environment. Our text4VPR model addresses this issue for the first time by utilizing semantic information from multiple views of the same location. During the training phase, we employ contrastive learning with single image-text pairs, while in the inference phase, we match groups of descriptions and images from the same location to achieve precise localization. We are the first to tackle the localization problem from pure text descriptions to image groups and have introduced a dataset called Street360Loc. This dataset contains 7,000 locations, each with four images from different directions and corresponding rich textual descriptions. On Street360Loc, Text4VPR builds a robust baseline, achieving a top-1 accuracy of 51.2% and a top-10 accuracy of 90.5% within a 5-meter radius on the test set. This indicates that localization from textual descriptions to images is not only feasible but also holds significant potential for further advancement.
 
 ## Model and performance
 
-![image](https://github.com/user-attachments/assets/f844180a-4107-4e8c-9bbd-4fdbecb26a74)
+
 <div align="center">
-Text4VPR. Training stage: We employ the T5 model to encode text descriptions. We implement the Sinkhorn algorithm to assign tags to clusters, followed by cluster aggregation to generate image encodings. Finally, we use contrastive learning to draw correctly matched image-text pairs closer in the embedding space. Inference stage: Both images and text are encoded with the same text and image encoders utilized during training. Subsequently, we align text clusters with their paired image clusters at corresponding positions.
+Text4VPR. Training stage: We employ the T5 model to encode text descriptions. We implement the Sinkhorn algorithm to assign tags to clusters, followed by cluster aggregation to generate image encodings. Finally, we use contrastive learning to draw correctly matched image-text pairs closer in the embedding space. Inference stage: Both images and text are encoded with the same text and image encoders utilized during training. Subsequently, we align text clusters inner groups and then retrival with their paired image clusters at corresponding positions.
 
 </div>
 
 
-![image](https://github.com/user-attachments/assets/9f0fe76e-cbad-4019-afef-18ffbb5ec0bc)
+![image](https://github.com/user-attachments/assets/c94dc733-93a7-40b9-b46e-f9a72751d589)
+
 
 <div align="center">
  **Performance evaluation by comparison with SOTA place recognition methods**
